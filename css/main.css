@@ -24,9 +24,21 @@
     display: inline-block;
     position: relative;
     float: left;
-    width: 30%;
+    width: 31%;
     background: red;
-    margin: 0.1%; }
+    margin: 0 1.3vw; }
     .wuSlide .slide img {
       width: 100%;
       height: auto; }
+
+.slideWrap {
+  position: relative; }
+
+@media (max-width: 1200px) {
+  .wuSlide .slide {
+    width: 48%;
+    margin: 0 1.4vw; } }
+@media (max-width: 800px) {
+  .wuSlide .slide {
+    width: 98%;
+    margin: 0 2.25vw; } }

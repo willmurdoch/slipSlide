@@ -1,20 +1,19 @@
 $(document).ready(function(){
 	$('#spot1').wuSlide({
-		background:"gold"
+		speed: 500
 	});
 });
 var wuSlide;
 /*Wu Slider Core*/
 (function($){
-	
-	var wuSlide,slideWidth,slideHeight,settings;
 	$.fn.wuSlide = function(options){
 		var slide = this.children();
+		var wuParent = this;
 		var slideWidth = slide.outerWidth()-1;
 		var slideHeight = slide.outerHeight();
 		/*Settings*/
 		var settings = $.extend({
-			background: "red",
+			speed: 750
 		}, options );
 		/*Layout*/
 		this.wrapInner("<div class='slideWrap'></div>");
@@ -24,15 +23,30 @@ var wuSlide;
 		slide.height(slideHeight);
 		$('.slideWrap').width((slide.outerWidth(true)*(slide.length+1)));
 		
+		/*Bindings*/
+		var wuStart = 0,wuDir,wuTar;
+		$('.slideNav div').click(function(e){
+			if($(this).hasClass('lBtn')){
+				wuDir = wuStart + slide.outerWidth(true);
+			}
+			else{
+				wuDir = wuStart - slide.outerWidth(true);
+			}
+			wuParent.find('.slideWrap').animate({'left':wuDir+'px'},settings.speed,function(){
+				wuStart = wuDir;
+			});
+		});
+		
 		/*Resize*/
 		$(window).resize(function(){
+			wuStart = 0;
 			slide.removeAttr('style');
 			$('.slideWrap').removeAttr('style');
 			slideWidth = slide.outerWidth()-1;
 			slideHeight = slide.outerHeight();
 			slide.width(slideWidth);
 			slide.height(slideHeight);
-			$('.slideWrap').width((slide.outerWidth(true)*(slide.length+1)));
+			wuParent.find('.slideWrap').width((slide.outerWidth(true)*(slide.length+1)));
 		});
 	};
 }(jQuery));
