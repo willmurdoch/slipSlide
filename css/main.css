@@ -23,22 +23,26 @@
   .wuSlide .slide {
     display: inline-block;
     position: relative;
-    float: left;
     width: 31%;
     background: red;
-    margin: 0 1.3vw; }
+    margin: 0 1.15vw;
+    white-space: nowrap; }
     .wuSlide .slide img {
       width: 100%;
       height: auto; }
 
-.slideWrap {
-  position: relative; }
+.slideSize {
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden; }
 
-@media (max-width: 1200px) {
-  .wuSlide .slide {
-    width: 48%;
-    margin: 0 1.4vw; } }
-@media (max-width: 800px) {
+.slideWrap {
+  position: relative;
+  display: inline-block;
+  float: left;
+  white-space: nowrap; }
+
+@media (max-width: 1000px) {
   .wuSlide .slide {
     width: 98%;
-    margin: 0 2.25vw; } }
+    margin: 0 1.1vw; } }
