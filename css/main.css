@@ -23,13 +23,15 @@
   .wuSlide .slide {
     display: inline-block;
     position: relative;
-    width: 31%;
+    width: 32.3%;
     background: red;
-    margin: 0 1.15vw;
+    margin: 0 0.5%;
     white-space: nowrap; }
     .wuSlide .slide img {
       width: 100%;
       height: auto; }
+  .wuSlide .slide:first-child {
+    float: left; }
 
 .slideSize {
   width: 90%;
@@ -45,4 +47,4 @@
 @media (max-width: 1000px) {
   .wuSlide .slide {
     width: 98%;
-    margin: 0 1.1vw; } }
+    margin: 0 1.05vw; } }

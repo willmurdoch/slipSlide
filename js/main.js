@@ -3,14 +3,12 @@ $(document).ready(function(){
 		speed: 500
 	});
 });
-var wuSlide;
+
 /*Wu Slider Core*/
 (function($){
 	$.fn.wuSlide = function(options){
 		var slide = this.children();
 		var wuParent = this;
-		var slideWidth = slide.outerWidth()-1;
-		var slideHeight = slide.outerHeight();
 		
 		/*Settings*/
 		var settings = $.extend({
@@ -20,24 +18,39 @@ var wuSlide;
 		/*Layout*/
 		this.wrapInner("<div class='slideWrap'></div>");
 		this.find('.slideWrap').wrap("<div class='slideSize'></div>");
-		this.prepend("<div class='slideNav'><div class='lBtn'></div><div class='rBtn'></div></div>");
-		
-		/*Output*/
-		slideSize();
+		if(slide.length > 3){
+			this.prepend("<div class='slideNav'><div class='lBtn'></div><div class='rBtn'></div></div>");
+		}
 		
 		/*Bindings*/
 		var wuStart = 0,wuDir,wuTar;
 		$('.slideNav div').click(function(e){
 			if($(this).hasClass('lBtn')){
 				wuDir = wuStart + slide.outerWidth(true);
+				if($('.slideWrap .current').first().prev(slide).length){
+					$('.slideWrap .current').removeClass('current').prev(slide).addClass('current');
+				}
+				else{
+					wuDir = -(slide.outerWidth(true)*(slide.length-1));
+				}
 			}
 			else{
 				wuDir = wuStart - slide.outerWidth(true);
+				if($('.slideWrap .current').last().next(slide).length){
+					$('.slideWrap .current').removeClass('current').next(slide).addClass('current');
+				}
+				else{
+					wuDir = 0;
+				}
 			}
 			wuParent.find('.slideWrap').animate({'left':wuDir+'px'},settings.speed,function(){
 				wuStart = wuDir;
+				slideCheck();
 			});
 		});
+		
+		/*Output*/
+		slideSize();
 		
 		/*Resize*/
 		$(window).resize(function(){
@@ -47,13 +60,19 @@ var wuSlide;
 		
 		function slideSize(){
 			slide.removeAttr('style');
-			slideWidth = slide.outerWidth()-1;
-			slideHeight = slide.outerHeight();
-			slide.css({
-				'width':slideWidth,
-				'height':slideHeight,
-				
-			});
+			slideCheck();
+			$('.slideWrap').removeAttr('style');
 		}	
+		function slideCheck(){
+			slide.removeClass('current').removeClass('focus');
+			slide.each(function(){
+				if($(this).offset().left > 0 && $(this).offset().left < $(window).width()-$(this).width()){
+					$(this).addClass('current');
+				}
+			});
+			if($('.slideWrap .current').length > 1){
+				$('.slideWrap .current').first().next().addClass('focus');
+			}
+		}
 	};
 }(jQuery));

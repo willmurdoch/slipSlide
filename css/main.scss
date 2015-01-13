@@ -33,15 +33,18 @@ body{
 	.slide{
 		display:inline-block;
 		position:relative;
-		width:31%;
+		width:32.3%;
 		background:red;
-		margin:0 1.15vw;
+		margin:0 0.5%;
 		white-space:nowrap;
 		
 		img{
 			width:100%;
 			height:auto;
 		}
+	 }
+	 .slide:first-child{
+		float:left;
 	 }
 }
 .slideSize{
@@ -59,7 +62,7 @@ body{
 	.wuSlide{
 		.slide{
 			width:98%;
-			margin:0 1.1vw;
+			margin:0 1.05vw;
 		}
 	}
 }
