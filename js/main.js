@@ -12,13 +12,14 @@ $(document).ready(function(){
 		
 		/*Settings*/
 		var settings = $.extend({
-			speed: 750
+			speed: 750,
+			count: 3
 		}, options );
 		
 		/*Layout*/
 		this.wrapInner("<div class='slideWrap'></div>");
 		this.find('.slideWrap').wrap("<div class='slideSize'></div>");
-		if(slide.length > 3){
+		if(slide.length > settings.count){
 			this.prepend("<div class='slideNav'><div class='lBtn'></div><div class='rBtn'></div></div>");
 		}
 		
@@ -59,9 +60,8 @@ $(document).ready(function(){
 		});
 		
 		function slideSize(){
-			slide.removeAttr('style');
-			slideCheck();
 			$('.slideWrap').removeAttr('style');
+			slideCheck();
 		}	
 		function slideCheck(){
 			slide.removeClass('current').removeClass('focus');
@@ -72,6 +72,9 @@ $(document).ready(function(){
 			});
 			if($('.slideWrap .current').length > 1){
 				$('.slideWrap .current').first().next().addClass('focus');
+			}
+			else{
+				$('.slideWrap .current').addClass('focus');
 			}
 		}
 	};

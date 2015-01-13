@@ -17,21 +17,24 @@
       z-index: 2;
       cursor: pointer; }
     .wuSlide .slideNav .lBtn {
-      left: 0px; }
+      left: 1%; }
     .wuSlide .slideNav .rBtn {
-      right: 0px; }
+      right: 1%; }
   .wuSlide .slide {
     display: inline-block;
     position: relative;
     width: 32.3%;
     background: red;
     margin: 0 0.5%;
-    white-space: nowrap; }
+    white-space: nowrap;
+    transition: background 0.5s; }
     .wuSlide .slide img {
       width: 100%;
       height: auto; }
   .wuSlide .slide:first-child {
     float: left; }
+  .wuSlide .slide.focus {
+    background: blue; }
 
 .slideSize {
   width: 90%;

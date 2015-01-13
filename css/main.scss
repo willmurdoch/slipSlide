@@ -24,10 +24,10 @@ body{
 			cursor:pointer;
 		}
 		.lBtn{
-			left:0px; 
+			left:1%; 
 		}
 		.rBtn{
-			right:0px;
+			right:1%;
 		}
 	}
 	.slide{
@@ -37,6 +37,7 @@ body{
 		background:red;
 		margin:0 0.5%;
 		white-space:nowrap;
+		transition:background 0.5s;
 		
 		img{
 			width:100%;
@@ -45,6 +46,9 @@ body{
 	 }
 	 .slide:first-child{
 		float:left;
+	 }
+	 .slide.focus{
+		background:blue;
 	 }
 }
 .slideSize{
