@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$('#spot1').wuSlide({
-		speed: 500
+		focus: true
 	});
 });
 
@@ -12,7 +12,8 @@ $(document).ready(function(){
 		
 		/*Settings*/
 		var settings = $.extend({
-			speed: 750,
+			focus: false,
+			speed: 500,
 			count: 3
 		}, options );
 		
@@ -70,11 +71,13 @@ $(document).ready(function(){
 					$(this).addClass('current');
 				}
 			});
-			if($('.slideWrap .current').length > 1){
-				$('.slideWrap .current').first().next().addClass('focus');
-			}
-			else{
-				$('.slideWrap .current').addClass('focus');
+			if(settings.focus == true){
+				if($('.slideWrap .current').length > 1){
+					$('.slideWrap .current').first().next().addClass('focus');
+				}
+				else{
+					$('.slideWrap .current').addClass('focus');
+				}
 			}
 		}
 	};

@@ -1,0 +1,1 @@
+A responsive jQuery based carousel plugin
