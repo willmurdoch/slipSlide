@@ -25,7 +25,7 @@ $(document).ready(function(){
 		}
 		
 		/*Bindings*/
-		var wuStart = 0,wuDir,wuTar;
+		var wuStart = 0, wuCount = 0, wuDir = 0;
 		$('.slideNav div').click(function(e){
 			if($(this).hasClass('lBtn')){
 				wuDir = wuStart + slide.outerWidth(true);
@@ -33,7 +33,7 @@ $(document).ready(function(){
 					$('.slideWrap .current').removeClass('current').prev(slide).addClass('current');
 				}
 				else{
-					wuDir = -(slide.outerWidth(true)*(slide.length-1));
+					wuDir = -(slide.outerWidth(true)*(slide.length-wuCount));
 				}
 			}
 			else{
@@ -52,7 +52,7 @@ $(document).ready(function(){
 		});
 		
 		/*Output*/
-		slideSize();
+		slideCheck();
 		
 		/*Resize*/
 		$(window).resize(function(){
@@ -65,10 +65,12 @@ $(document).ready(function(){
 			slideCheck();
 		}	
 		function slideCheck(){
+			wuCount = 0;
 			slide.removeClass('current').removeClass('focus');
 			slide.each(function(){
 				if($(this).offset().left > 0 && $(this).offset().left < $(window).width()-$(this).width()){
 					$(this).addClass('current');
+					wuCount++;
 				}
 			});
 			if(settings.focus == true){
