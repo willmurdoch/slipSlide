@@ -28,14 +28,28 @@
 			right:1%;
 		}
 	} 
+	img{
+		word-spacing:0;
+		display:inline-block;
+		vertical-align:top;
+		position:relative;
+		width:30.333%;
+		opacity:0.5;
+		margin:0 1.5%;
+		transition:all 0.5s;
+	}
+	img.focus{
+		opacity:1;
+	}
 	.slide{
 		word-spacing:0;
 		display:inline-block;
+		vertical-align:top;
 		position:relative;
 		width:30.333%;
 		background:red;
 		margin:0 1.5%;
-		transition:background 0.5s;
+		transition:all 0.5s;
 		
 		p{
 			font-size:5vw;

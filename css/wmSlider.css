@@ -22,14 +22,26 @@
       left: 1%; }
     .wmSlider .slideNav .rBtn {
       right: 1%; }
+  .wmSlider img {
+    word-spacing: 0;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 30.333%;
+    opacity: 0.5;
+    margin: 0 1.5%;
+    transition: all 0.5s; }
+  .wmSlider img.focus {
+    opacity: 1; }
   .wmSlider .slide {
     word-spacing: 0;
     display: inline-block;
+    vertical-align: top;
     position: relative;
     width: 30.333%;
     background: red;
     margin: 0 1.5%;
-    transition: background 0.5s; }
+    transition: all 0.5s; }
     .wmSlider .slide p {
       font-size: 5vw;
       top: 0;
