@@ -30,6 +30,13 @@
     background: red;
     margin: 0 1.5%;
     transition: background 0.5s; }
+    .wmSlider .slide p {
+      font-size: 5vw;
+      top: 0;
+      font-weight: 900;
+      margin: 0;
+      position: absolute;
+      color: #FFF; }
     .wmSlider .slide img {
       width: 100%;
       height: auto; }
@@ -38,8 +45,7 @@
 
 .slideSize {
   width: 99%;
-  margin: 0 auto;
-  overflow: hidden; }
+  margin: 0 auto; }
 
 .slideWrap {
   position: relative;

@@ -37,6 +37,14 @@
 		margin:0 1.5%;
 		transition:background 0.5s;
 		
+		p{
+			font-size:5vw;
+			top:0;
+			font-weight:900;
+			margin:0;
+			position:absolute;
+			color:#FFF;
+		}
 		img{
 			width:100%;
 			height:auto;
@@ -49,7 +57,6 @@
 .slideSize{
 	width:99%;
 	margin:0 auto;
-	overflow:hidden;
 }
 .slideWrap{
 	position:relative;

@@ -44,17 +44,18 @@
 				if($(this).hasClass('lBtn')){
 					if(myFocus.prev().length){
 						if(myFocus.prev().hasClass('current')){
+							sPos = - sWrap.find('.current').first().position().left;
 							myFocus.removeClass('focus').prev().addClass('focus');
 						}
 						else{
-							sPos = sStart + myFocus.prev().outerWidth(true);
 							myFocus.removeClass('focus').prev().addClass('current focus');
+							sPos = - sWrap.find('.focus').position().left;
 						}
 					}
 					else{
-						sPos = -(slide.last().position().left);
 						myFocus.removeClass('focus');
 						slide.last().addClass('current focus');
+						sPos = - slide.last().position().left;
 					}
 				}
 				
@@ -62,24 +63,23 @@
 				else{
 					if(myFocus.next().length){
 						if(myFocus.next().hasClass('current')){
+							sPos = - sWrap.find('.current').first().position().left;
 							myFocus.removeClass('focus').next().addClass('focus');
 						}
 						else{
-							sPos = sStart - myFocus.next().outerWidth(true);
+							sPos = - sWrap.find('.current').first().position().left;
 							myFocus.removeClass('focus').next().addClass('current focus');
+							sPos = sPos - sWrap.find('.focus').outerWidth(true);
 						}
 					}
 					else{
-						sPos = 0;
 						myFocus.removeClass('focus');
 						slide.first().addClass('current focus');
+						sPos = 0;
 					}
 				}
-				
 				/*Animate wrapper then re-check visible elements*/
-				sWrap.animate({'left':sPos+'px'},settings.speed,function(){
-					sStart = sPos;
-					console.log(sStart);
+				sWrap.animate({'left': sPos +'px'},settings.speed,function(){
 					slideCheck();
 					stopSpam = false;
 				});
@@ -99,8 +99,6 @@
 				slideWidth += $(this).outerWidth(true);
 			});
 			slideCheck();
-			sStart = -(sWrap.find('.focus').position().left);
-			console.log(sStart);
 		});
 		
 		
