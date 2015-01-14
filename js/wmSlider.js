@@ -79,6 +79,7 @@
 				/*Animate wrapper then re-check visible elements*/
 				sWrap.animate({'left':sPos+'px'},settings.speed,function(){
 					sStart = sPos;
+					console.log(sStart);
 					slideCheck();
 					stopSpam = false;
 				});
@@ -86,15 +87,20 @@
 		});
 		
 		/*Resize*/
+		var sOrig;
 		$(window).resize(function(){
-			sStart = 0;
+			sOrig = sWrap.find('.current').first();
 			slideWidth = 0;
+			sWrap.css('left', -(sWrap.find('.current').first().position().left));
+			if((sWrap.find('.focus').offset().left < 0) || (sWrap.find('.focus').offset().left > (sWrap.width() - 1))){
+				sWrap.css('left', -(sWrap.find('.focus').position().left));
+			}
 			slide.each(function(){
 				slideWidth += $(this).outerWidth(true);
 			});
-			sWrap.removeAttr('style');
-			sWrap.css('left',-(sWrap.find('.focus').position().left));
 			slideCheck();
+			sStart = -(sWrap.find('.focus').position().left);
+			console.log(sStart);
 		});
 		
 		
@@ -103,7 +109,7 @@
 			sCount = 0;
 			slide.removeClass('current');
 			slide.each(function(){
-				if(($(this).offset().left > 0) && ($(this).offset().left < ($(window).width() - $(this).width()))){
+				if(($(this).offset().left > 0) && ($(this).offset().left < ($(window).width() - $(this).width()-1))){
 					$(this).addClass('current');
 					sCount++;
 				}
