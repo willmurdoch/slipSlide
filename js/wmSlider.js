@@ -1,12 +1,13 @@
 /*wmSlider Core*/
 (function($){
 	$.fn.wmSlider = function(options){
-		var sStart = 0, sCount = 0, sDir = 0;
+		var sStart = 0, sCount = 0, sPos = 0;
 		var sParent = this;
 		var slide = this.children();
 		
 		/*Settings*/
 		var settings = $.extend({
+			count: 1,
 			focus: false,
 			focusMode: 1,
 			cycle: true,
@@ -22,7 +23,8 @@
 		
 		/*Layout*/
 		this.wrapInner("<div class='slideWrap'></div>");
-		this.find('.slideWrap').wrap("<div class='slideSize'></div>");
+		var sWrap = this.find('.slideWrap');
+		sWrap.wrap("<div class='slideSize'></div>");
 		if(settings.nav == true){
 			this.prepend("<div class='slideNav'><div class='lBtn'></div><div class='rBtn'></div></div>");
 		} 
@@ -45,12 +47,12 @@
 							myFocus.removeClass('focus').prev().addClass('focus');
 						}
 						else{
-							sDir = sStart + slide.outerWidth(true);
+							sPos = sStart + myFocus.prev().outerWidth(true);
 							myFocus.removeClass('focus').prev().addClass('current focus');
 						}
 					}
 					else{
-						sDir = -(slideWidth-(sParent.find('.slideSize').outerWidth(true)));
+						sPos = -(slide.last().position().left);
 						myFocus.removeClass('focus');
 						slide.last().addClass('current focus');
 					}
@@ -63,20 +65,20 @@
 							myFocus.removeClass('focus').next().addClass('focus');
 						}
 						else{
-							sDir = sStart - slide.outerWidth(true);
+							sPos = sStart - myFocus.next().outerWidth(true);
 							myFocus.removeClass('focus').next().addClass('current focus');
 						}
 					}
 					else{
-						sDir = 0;
+						sPos = 0;
 						myFocus.removeClass('focus');
 						slide.first().addClass('current focus');
 					}
 				}
 				
 				/*Animate wrapper then re-check visible elements*/
-				sParent.find('.slideWrap').animate({'left':sDir+'px'},settings.speed,function(){
-					sStart = sDir;
+				sWrap.animate({'left':sPos+'px'},settings.speed,function(){
+					sStart = sPos;
 					slideCheck();
 					stopSpam = false;
 				});
@@ -86,11 +88,13 @@
 		/*Resize*/
 		$(window).resize(function(){
 			sStart = 0;
-			$('.slideWrap').removeAttr('style');
+			slideWidth = 0;
+			slide.each(function(){
+				slideWidth += $(this).outerWidth(true);
+			});
+			sWrap.removeAttr('style');
+			sWrap.css('left',-(sWrap.find('.focus').position().left));
 			slideCheck();
-			if(settings.focus == true){
-				slideFocus();
-			}
 		});
 		
 		
@@ -103,7 +107,7 @@
 					$(this).addClass('current');
 					sCount++;
 				}
-			});
+			});	
 		}
 		
 		/*Determine which element gets the focus class*/
