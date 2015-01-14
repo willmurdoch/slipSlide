@@ -27,7 +27,6 @@
     display: inline-block;
     vertical-align: top;
     position: relative;
-    width: 30.333%;
     opacity: 0.5;
     margin: 0 1.5%;
     transition: opacity 0.5s; }
@@ -71,7 +70,7 @@
     margin: 0 auto;
     overflow: hidden; }
 
-  .wmSlider .slide {
+  .slipSlide .slide {
     width: 48%;
     margin: 0 1%; } }
 @media (max-width: 650px) {
@@ -80,6 +79,6 @@
     margin: 0 auto;
     overflow: hidden; }
 
-  .wmSlider .slide {
+  .slipSlide .slide {
     width: 98%;
     margin: 0 1%; } }

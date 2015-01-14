@@ -8,7 +8,6 @@
 		/*Settings*/
 		var settings = $.extend({
 			count: 1,
-			focus: false,
 			focusMode: 1,
 			cycle: true,
 			speed: 500,
@@ -29,9 +28,7 @@
 			this.prepend("<div class='slideNav'><div class='lBtn'></div><div class='rBtn'></div></div>");
 		} 
 		slideCheck();
-		if(settings.focus == true){
-			slideFocus();
-		}
+		slideFocus();
 		
 		/*Bindings*/
 		var stopSpam = false;
@@ -55,7 +52,12 @@
 					else{
 						myFocus.removeClass('focus');
 						slide.last().addClass('current focus');
-						sPos = - slide.last().position().left;
+						if(myFocus.siblings('.current').length > 1){
+							sPos = - (slide.last().position().left - (sParent.find('.slideSize').width() - slide.last().outerWidth(true)));
+						}
+						else{
+							sPos = - slide.last().position().left;
+						}
 					}
 				}
 				
@@ -67,9 +69,8 @@
 							myFocus.removeClass('focus').next().addClass('focus');
 						}
 						else{
-							sPos = - sWrap.find('.current').first().position().left;
+							sPos = - sWrap.find('.current').first().next().position().left;
 							myFocus.removeClass('focus').next().addClass('current focus');
-							sPos = sPos - sWrap.find('.focus').outerWidth(true);
 						}
 					}
 					else{
