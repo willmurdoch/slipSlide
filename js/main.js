@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$('#spot1').wuSlide({
 		focus: true,
-		focusMode: 2
+		focusMode: 1
 	});
 });

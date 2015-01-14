@@ -1,4 +1,4 @@
-/*Wu Slider Core*/
+/*WuSlider Core*/
 (function($){
 	$.fn.wuSlide = function(options){
 		var wuStart = 0, wuCount = 0, wuDir = 0;
@@ -9,6 +9,7 @@
 		var settings = $.extend({
 			focus: false,
 			focusMode: 1,
+			cycle: true,
 			speed: 500,
 			nav: true
 		}, options );
