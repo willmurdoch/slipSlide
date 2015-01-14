@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('#spot1').wmSlider({
+	$('#spot1').slipSlide({
 		focus: true,
 		focusMode: 1
 	});

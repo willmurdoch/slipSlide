@@ -4,11 +4,11 @@ Because the layout depends on inline-block, the lowest version of Internet Explo
 
 Instructions:
 
-1) Include wmSlider.js and wuSlider.css.
-2) When the document is ready, call $(element).wmSlider()
+1) Include slipSlide.js and slipSlide.css.
+2) When the document is ready, call $(element).slipSlide()
 3) Options are available through the format below
 
-$(element).wmSlider({
+$(element).slipSlide({
 	option: value
 });
 

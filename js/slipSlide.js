@@ -1,6 +1,6 @@
-/*wmSlider Core*/
+/*slipSlide Core*/
 (function($){
-	$.fn.wmSlider = function(options){
+	$.fn.slipSlide = function(options){
 		var sStart = 0, sCount = 0, sPos = 0;
 		var sParent = this;
 		var slide = this.children();
