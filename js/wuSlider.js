@@ -1,8 +1,8 @@
-/*WuSlider Core*/
+/*wmSlider Core*/
 (function($){
-	$.fn.wuSlide = function(options){
-		var wuStart = 0, wuCount = 0, wuDir = 0;
-		var wuParent = this;
+	$.fn.wmSlider = function(options){
+		var sStart = 0, sCount = 0, sDir = 0;
+		var sParent = this;
 		var slide = this.children();
 		
 		/*Settings*/
@@ -25,58 +25,85 @@
 		this.find('.slideWrap').wrap("<div class='slideSize'></div>");
 		if(settings.nav == true){
 			this.prepend("<div class='slideNav'><div class='lBtn'></div><div class='rBtn'></div></div>");
-		}
+		} 
 		slideCheck();
+		if(settings.focus == true){
+			slideFocus();
+		}
 		
 		/*Bindings*/
-		
-		
-		$('.slideNav div').click(function(e){
-			if($(this).hasClass('lBtn')){
-				wuDir = wuStart + slide.outerWidth(true);
-				if($('.slideWrap .focus').prev().length){
-					$('.slideWrap .focus').removeClass('focus').prev().addClass('current focus');
+		var stopSpam = false;
+		this.find('.slideNav div').click(function(e){
+			if(stopSpam == false){
+				stopSpam = true;
+				var myFocus = sParent.find('.focus');
+				
+				/*Left*/
+				if($(this).hasClass('lBtn')){
+					if(myFocus.prev().length){
+						if(myFocus.prev().hasClass('current')){
+							myFocus.removeClass('focus').prev().addClass('focus');
+						}
+						else{
+							sDir = sStart + slide.outerWidth(true);
+							myFocus.removeClass('focus').prev().addClass('current focus');
+						}
+					}
+					else{
+						sDir = -(slideWidth-(sParent.find('.slideSize').outerWidth(true)));
+						myFocus.removeClass('focus');
+						slide.last().addClass('current focus');
+					}
 				}
+				
+				/*Right*/
 				else{
-					wuDir = -(slide.outerWidth(true)*(slide.length-wuCount));
+					if(myFocus.next().length){
+						if(myFocus.next().hasClass('current')){
+							myFocus.removeClass('focus').next().addClass('focus');
+						}
+						else{
+							sDir = sStart - slide.outerWidth(true);
+							myFocus.removeClass('focus').next().addClass('current focus');
+						}
+					}
+					else{
+						sDir = 0;
+						myFocus.removeClass('focus');
+						slide.first().addClass('current focus');
+					}
 				}
+				
+				/*Animate wrapper then re-check visible elements*/
+				sParent.find('.slideWrap').animate({'left':sDir+'px'},settings.speed,function(){
+					sStart = sDir;
+					slideCheck();
+					stopSpam = false;
+				});
 			}
-			else{
-				wuDir = wuStart - slide.outerWidth(true);
-				if($('.slideWrap .focus').next().length){
-					$('.slideWrap .focus').removeClass('focus').next().addClass('current focus');
-				}
-				else{
-					wuDir = 0;
-				}
-			}
-			wuParent.find('.slideWrap').animate({'left':wuDir+'px'},settings.speed,function(){
-				wuStart = wuDir;
-				slideCheck();
-			});
 		});
 		
 		/*Resize*/
 		$(window).resize(function(){
-			wuStart = 0;
+			sStart = 0;
 			$('.slideWrap').removeAttr('style');
 			slideCheck();
+			if(settings.focus == true){
+				slideFocus();
+			}
 		});
 		
 		
 		/*Detect which slides are visible*/
 		function slideCheck(){
-			wuCount = 0;
-			slide.removeClass('current').removeClass('focus');
+			sCount = 0;
+			slide.removeClass('current');
 			slide.each(function(){
-				if(($(this).offset().left > 0) && ($(this).offset().left < $(window).width()-$(this).width())){
+				if(($(this).offset().left > 0) && ($(this).offset().left < ($(window).width() - $(this).width()))){
 					$(this).addClass('current');
-					wuCount++;
+					sCount++;
 				}
 			});
-			if(settings.focus == true){
-				slideFocus();
-			}
 		}
 		
 		/*Determine which element gets the focus class*/

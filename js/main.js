@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('#spot1').wuSlide({
+	$('#spot1').wmSlider({
 		focus: true,
 		focusMode: 1
 	});
