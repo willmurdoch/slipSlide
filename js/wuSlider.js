@@ -1,15 +1,23 @@
 /*Wu Slider Core*/
 (function($){
 	$.fn.wuSlide = function(options){
-		var slide = this.children();
+		var wuStart = 0, wuCount = 0, wuDir = 0;
 		var wuParent = this;
+		var slide = this.children();
 		
 		/*Settings*/
 		var settings = $.extend({
 			focus: false,
+			focusMode: 1,
 			speed: 500,
 			nav: true
 		}, options );
+		
+		/*Get width of all elements together*/
+		var slideWidth = 0;
+		slide.each(function(){
+			slideWidth += $(this).outerWidth(true);
+		});
 		
 		/*Layout*/
 		this.wrapInner("<div class='slideWrap'></div>");
@@ -17,14 +25,16 @@
 		if(settings.nav == true){
 			this.prepend("<div class='slideNav'><div class='lBtn'></div><div class='rBtn'></div></div>");
 		}
+		slideCheck();
 		
 		/*Bindings*/
-		var wuStart = 0, wuCount = 0, wuDir = 0;
+		
+		
 		$('.slideNav div').click(function(e){
 			if($(this).hasClass('lBtn')){
 				wuDir = wuStart + slide.outerWidth(true);
-				if($('.slideWrap .current').first().prev().length){
-					$('.slideWrap .current').removeClass('current').prev().addClass('current');
+				if($('.slideWrap .focus').prev().length){
+					$('.slideWrap .focus').removeClass('focus').prev().addClass('current focus');
 				}
 				else{
 					wuDir = -(slide.outerWidth(true)*(slide.length-wuCount));
@@ -32,8 +42,8 @@
 			}
 			else{
 				wuDir = wuStart - slide.outerWidth(true);
-				if($('.slideWrap .current').last().next().length){
-					$('.slideWrap .current').removeClass('current').next().addClass('current');
+				if($('.slideWrap .focus').next().length){
+					$('.slideWrap .focus').removeClass('focus').next().addClass('current focus');
 				}
 				else{
 					wuDir = 0;
@@ -45,30 +55,41 @@
 			});
 		});
 		
-		/*Output*/
-		slideCheck();
-		
 		/*Resize*/
 		$(window).resize(function(){
 			wuStart = 0;
-			slideSize();
-		});
-		
-		function slideSize(){
 			$('.slideWrap').removeAttr('style');
 			slideCheck();
-		}	
+		});
+		
+		
+		/*Detect which slides are visible*/
 		function slideCheck(){
 			wuCount = 0;
 			slide.removeClass('current').removeClass('focus');
 			slide.each(function(){
-				if($(this).offset().left > 0 && $(this).offset().left < $(window).width()-$(this).width()){
+				if(($(this).offset().left > 0) && ($(this).offset().left < $(window).width()-$(this).width())){
 					$(this).addClass('current');
 					wuCount++;
 				}
 			});
 			if(settings.focus == true){
-				var focusSlide = 0;
+				slideFocus();
+			}
+		}
+		
+		/*Determine which element gets the focus class*/
+		function slideFocus(){
+			var focusSlide = 0;
+			if(settings.focusMode == 1){
+				if($('.slideWrap .current').length > 1){
+					$('.slideWrap .current').first().addClass('focus');
+				}
+				else{
+					$('.slideWrap .current').addClass('focus');
+				}
+			}
+			else{
 				if($('.slideWrap .current').length > 1){
 					focusSlide = ($('.slideWrap .current').length/2).toFixed(0) - 1;
 					$('.slideWrap .current').eq(focusSlide).addClass('focus');
