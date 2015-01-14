@@ -41,7 +41,6 @@
 				if($(this).hasClass('lBtn')){
 					if(myFocus.prev().length){
 						if(myFocus.prev().hasClass('current')){
-							sPos = - sWrap.find('.current').first().position().left;
 							myFocus.removeClass('focus').prev().addClass('focus');
 						}
 						else{
