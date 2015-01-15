@@ -1,17 +1,22 @@
-A responsive jQuery based carousel plugin. Built using jQuery 1.10.2.
-Because the layout depends on inline-block, the lowest version of Internet Explorer supported is IE8.
+#slipSlide
+##A responsive jQuery based carousel plugin. Built using jQuery 1.10.2.
+###*Because the layout depends on inline-block, the lowest supported version of Internet Explorer is IE8.
 
+Demo:
+http://willmurdoch.com/slipSlide
+http://willmurdoch.com/slipSlide/
 
 Instructions:
 
 1) Include slipSlide.js and slipSlide.css.
-2) When the document is ready, call $(element).slipSlide()
+2) When the document is ready, call ...$(element).slipSlide()...
 3) Options are available through the format below
 
+...
 $(element).slipSlide({
-	option: value
+	'''option''': '''value'''
 });
-
+...
 
 Options:
 
