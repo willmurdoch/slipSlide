@@ -3,20 +3,25 @@
 *Because the layout depends on inline-block, the lowest supported version of Internet Explorer is IE8.
 
 Demo:
-http://willmurdoch.com/slipSlide
-http://willmurdoch.com/slipSlide/
+*http://willmurdoch.com/slipSlide
+*http://willmurdoch.com/slipSlide/
 
 Instructions:
 
-1) Include slipSlide.js and slipSlide.css.
-2) When the document is ready, call '''$(element).slipSlide()'''
-3) Options are available through the format below
+*1) Include slipSlide.js and slipSlide.css.
+*2) When the document is ready, call 
 
-'''
+```
+$(element).slipSlide()
+```
+
+*3) Options are available through the format below
+
+```
 $(element).slipSlide({
-	'''option''': '''value'''
+	option: value
 });
-'''
+```
 
 Options:
 
