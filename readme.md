@@ -1,7 +1,7 @@
 This is a work in progress!  
 #slipSlide  
 ###A responsive jQuery based carousel plugin  
-Built using jQuery 1.10.2  
+###Built using jQuery 1.10.2  
 *Because the layout depends on inline-block, the lowest supported version of Internet Explorer is IE8.
 
 Demo  
