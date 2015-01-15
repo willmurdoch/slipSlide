@@ -8,14 +8,14 @@ Demo:
 
 Instructions:
 
-*1) Include slipSlide.js and slipSlide.css.
-*2) When the document is ready, call 
+* 1) Include slipSlide.js and slipSlide.css.
+* 2) When the document is ready, call 
 
 ```
 $(element).slipSlide()
 ```
 
-*3) Options are available through the format below
+* 3) Options are available through the format below
 
 ```
 $(element).slipSlide({
