@@ -3,19 +3,19 @@
 *Because the layout depends on inline-block, the lowest supported version of Internet Explorer is IE8.
 
 Demo:
-*http://willmurdoch.com/slipSlide
-*http://willmurdoch.com/slipSlide/
+http://willmurdoch.com/slipSlide  
+http://willmurdoch.com/slipSlide/
 
-Instructions:
+#Instructions:
 
-* 1) Include slipSlide.js and slipSlide.css.
-* 2) When the document is ready, call 
+1) Include slipSlide.js and slipSlide.css  
+2) When the document is ready, call  
 
 ```
 $(element).slipSlide()
 ```
 
-* 3) Options are available through the format below
+3) Options are available through the format below  
 
 ```
 $(element).slipSlide({
@@ -23,9 +23,11 @@ $(element).slipSlide({
 });
 ```
 
-Options:
+#Options:
 
-focus - boolean, adds class to middle element (recommended only when displaying an odd number of slides)
-focusMode - int, 1 highlights the left and 2 highlights the center
-speed - int, in ms
-nav - 3 by default, if you have fewer than this many slides the nav will not be added
+###count  
+Int, minimum slides for nav to appear    
+###focusMode  
+int, 1 focuses on the left and 2 focuses on the center
+###speed   
+int, animation speed in ms
