@@ -24,67 +24,69 @@
 		this.wrapInner("<div class='slideWrap'></div>");
 		var sWrap = this.find('.slideWrap');
 		sWrap.wrap("<div class='slideSize'></div>");
-		if(settings.nav == true){
+		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+			sParent.find('.slideSize').addClass('mobile');
+		}
+		else if(settings.nav == true){
 			this.prepend("<div class='slideNav'><div class='lBtn'></div><div class='rBtn'></div></div>");
+			/*Bindings*/
+			var stopSpam = false;
+			this.find('.slideNav div').click(function(e){
+				if(stopSpam == false){
+					stopSpam = true;
+					var myFocus = sParent.find('.focus');
+					
+					/*Left*/
+					if($(this).hasClass('lBtn')){
+						if(myFocus.prev().length){
+							if(myFocus.prev().hasClass('current')){
+								myFocus.removeClass('focus').prev().addClass('focus');
+							}
+							else{
+								myFocus.removeClass('focus').prev().addClass('current focus');
+								sPos = - sWrap.find('.focus').position().left;
+							}
+						}
+						else{
+							myFocus.removeClass('focus');
+							slide.last().addClass('current focus');
+							if(myFocus.siblings('.current').length > 1){
+								sPos = - (slide.last().position().left - (sParent.find('.slideSize').width() - slide.last().outerWidth(true)));
+							}
+							else{
+								sPos = - slide.last().position().left;
+							}
+						}
+					}
+					
+					/*Right*/
+					else{
+						if(myFocus.next().length){
+							if(myFocus.next().hasClass('current')){
+								sPos = - sWrap.find('.current').first().position().left;
+								myFocus.removeClass('focus').next().addClass('focus');
+							}
+							else{
+								sPos = - sWrap.find('.current').first().next().position().left;
+								myFocus.removeClass('focus').next().addClass('current focus');
+							}
+						}
+						else{
+							myFocus.removeClass('focus');
+							slide.first().addClass('current focus');
+							sPos = 0;
+						}
+					}
+					/*Animate wrapper then re-check visible elements*/
+					sWrap.animate({'left': sPos +'px'},settings.speed,function(){
+						slideCheck();
+						stopSpam = false;
+					});
+				}
+			});
 		} 
 		slideCheck();
 		slideFocus();
-		
-		/*Bindings*/
-		var stopSpam = false;
-		this.find('.slideNav div').click(function(e){
-			if(stopSpam == false){
-				stopSpam = true;
-				var myFocus = sParent.find('.focus');
-				
-				/*Left*/
-				if($(this).hasClass('lBtn')){
-					if(myFocus.prev().length){
-						if(myFocus.prev().hasClass('current')){
-							myFocus.removeClass('focus').prev().addClass('focus');
-						}
-						else{
-							myFocus.removeClass('focus').prev().addClass('current focus');
-							sPos = - sWrap.find('.focus').position().left;
-						}
-					}
-					else{
-						myFocus.removeClass('focus');
-						slide.last().addClass('current focus');
-						if(myFocus.siblings('.current').length > 1){
-							sPos = - (slide.last().position().left - (sParent.find('.slideSize').width() - slide.last().outerWidth(true)));
-						}
-						else{
-							sPos = - slide.last().position().left;
-						}
-					}
-				}
-				
-				/*Right*/
-				else{
-					if(myFocus.next().length){
-						if(myFocus.next().hasClass('current')){
-							sPos = - sWrap.find('.current').first().position().left;
-							myFocus.removeClass('focus').next().addClass('focus');
-						}
-						else{
-							sPos = - sWrap.find('.current').first().next().position().left;
-							myFocus.removeClass('focus').next().addClass('current focus');
-						}
-					}
-					else{
-						myFocus.removeClass('focus');
-						slide.first().addClass('current focus');
-						sPos = 0;
-					}
-				}
-				/*Animate wrapper then re-check visible elements*/
-				sWrap.animate({'left': sPos +'px'},settings.speed,function(){
-					slideCheck();
-					stopSpam = false;
-				});
-			}
-		});
 		
 		/*Resize*/
 		var sOrig;

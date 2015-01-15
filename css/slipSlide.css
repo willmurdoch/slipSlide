@@ -58,6 +58,11 @@
   width: 99%;
   margin: 0 auto; }
 
+.slideSize.mobile {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; }
+
 .slideWrap {
   position: relative;
   display: inline-block;
