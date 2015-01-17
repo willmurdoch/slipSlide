@@ -5,7 +5,6 @@ This is a work in progress!
 *Because the layout depends on inline-block, the lowest supported version of Internet Explorer is IE8.
 
 Demo  
-http://willmurdoch.com/slipSlide  
 http://willmurdoch.com/slipSlide/
 
 #Instructions:
