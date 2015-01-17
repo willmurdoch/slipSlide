@@ -52,7 +52,7 @@
 						endSlide = false;
 						myFocus.removeClass('focus');
 						nextFocus.addClass('focus');
-						if((!nextFocus.hasClass('current')) && (settings.focusMode == 2)){
+						if(!nextFocus.hasClass('current')){
 							if(dir == 'left') sPos = - nextFocus.position().left;
 							else sPos = - sWrap.find('.current').first().next().position().left;
 						}
@@ -112,18 +112,8 @@
 		} 
 		if(settings.clickable == true){
 			slide.click(function(){
-				if(stopSpam == false){
-					sWrap.find('.focus').removeClass('focus');
-					$(this).addClass('focus');
-					sPos = - $(this).position().left;
-					if(slide.last().offset().left > sWrap.outerWidth(true)){
-						stopSpam = true;
-						sWrap.animate({'left': sPos +'px'},settings.speed,function(){
-							slideCheck();
-							stopSpam = false;
-						});
-					}
-				}
+				sWrap.find('.focus').removeClass('focus');
+				$(this).addClass('focus');
 			});
 		}
 		/*Resize*/
