@@ -51,7 +51,7 @@
     .slipSlide .slide img {
       width: 100%;
       height: auto; }
-  .slipSlide .slide:last-child, .slipSlide .slide:last-child img, .slipSlide img:last-child {
+  .slipSlide .mobile .slide:last-child, .slipSlide .mobile .slide:last-child img, .slipSlide .mobile img:last-child {
     margin: 0 0 0 1.5%; }
   .slipSlide .slide.focus {
     background: blue; }

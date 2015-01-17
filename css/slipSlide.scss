@@ -63,9 +63,11 @@
 			height:auto;
 		}
 	 }
-	 .slide:last-child,.slide:last-child img,img:last-child{
-		margin:0 0 0 1.5%;
-	 }
+	 .mobile{
+		 .slide:last-child,.slide:last-child img,img:last-child{
+			margin:0 0 0 1.5%;
+		 }
+	}
 	 .slide.focus{
 		background:blue;
 	 }

@@ -1,7 +1,7 @@
 /*slipSlide Core*/
 (function($){
 	$.fn.slipSlide = function(options){
-		var sStart = 0, sCount = 0, sPos = 0;
+		var sStart = 0, sCount = 0, sPos = 0,sOrig;
 		var sParent = this;
 		var slide = this.children();
 		
@@ -29,54 +29,55 @@
 		}
 		else if(settings.nav == true){
 			this.prepend("<div class='slideNav'><div class='lBtn'></div><div class='rBtn'></div></div>");
-			/*Bindings*/
 			var stopSpam = false;
+			slideCheck();
+			slideFocus();
+			var sPos = slide.first().position().left;
 			this.find('.slideNav div').click(function(e){
+				var dir = '';
 				if(stopSpam == false){
+				
+					/*Figure out the focus, and where it should move to*/
 					stopSpam = true;
 					var myFocus = sParent.find('.focus');
-					
-					/*Left*/
 					if($(this).hasClass('lBtn')){
-						if(myFocus.prev().length){
-							if(myFocus.prev().hasClass('current')){
-								myFocus.removeClass('focus').prev().addClass('focus');
-							}
-							else{
-								myFocus.removeClass('focus').prev().addClass('current focus');
-								sPos = - sWrap.find('.focus').position().left;
-							}
-						}
-						else{
-							myFocus.removeClass('focus');
-							slide.last().addClass('current focus');
-							if(myFocus.siblings('.current').length > 1){
-								sPos = - (slide.last().position().left - (sParent.find('.slideSize').width() - slide.last().outerWidth(true)));
-							}
-							else{
-								sPos = - slide.last().position().left;
-							}
-						}
+						var nextFocus = myFocus.prev();
+						dir = 'left';
+					}
+					else{
+						var nextFocus = myFocus.next();
+						dir = 'right';
 					}
 					
-					/*Right*/
+					/*If there's another slide to bring in*/
+					if(nextFocus.length){
+						myFocus.removeClass('focus');
+						nextFocus.addClass('focus');
+						if(!nextFocus.hasClass('current')){
+							if(dir == 'left') sPos = - nextFocus.position().left;
+							else sPos = - sWrap.find('.current').first().next().position().left;
+						}
+					}
+					/*If there are no more slides*/
 					else{
-						if(myFocus.next().length){
-							if(myFocus.next().hasClass('current')){
-								sPos = - sWrap.find('.current').first().position().left;
-								myFocus.removeClass('focus').next().addClass('focus');
+						myFocus.removeClass('focus');
+						if(dir == 'left'){
+							if(myFocus.siblings('.current').length >= 1){
+								nextFocus = slide.last();
+								sPos = - (nextFocus.position().left - (sParent.find('.slideSize').width() -nextFocus.outerWidth(true)));
 							}
 							else{
-								sPos = - sWrap.find('.current').first().next().position().left;
-								myFocus.removeClass('focus').next().addClass('current focus');
+								nextFocus = slide.last();
+								sPos = - nextFocus.position().left;
 							}
 						}
 						else{
-							myFocus.removeClass('focus');
-							slide.first().addClass('current focus');
+							nextFocus = slide.first();
 							sPos = 0;
 						}
+						nextFocus.addClass('focus');
 					}
+					
 					/*Animate wrapper then re-check visible elements*/
 					sWrap.animate({'left': sPos +'px'},settings.speed,function(){
 						slideCheck();
@@ -85,8 +86,6 @@
 				}
 			});
 		} 
-		slideCheck();
-		slideFocus();
 		
 		/*Resize*/
 		var sOrig;
@@ -116,7 +115,7 @@
 			});	
 		}
 		
-		/*Determine which element gets the focus class*/
+		/*Determine which element gets the focus class on load*/
 		function slideFocus(){
 			var focusSlide = 0;
 			if(settings.focusMode == 1){

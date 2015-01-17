@@ -1,5 +1,5 @@
 $(document).ready(function(){
 	$('#spot1').slipSlide({
-		focusMode: 1
+		focusMode: 2
 	});
 });
