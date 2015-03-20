@@ -1,3 +1,34 @@
+.ssContainer {
+  position: relative; }
+
+.slideNav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center; }
+  .slideNav .sCirc {
+    display: inline-block;
+    position: relative;
+    background: #e1e1e1;
+    margin: 10% 5px 0;
+    bottom: 0;
+    border-radius: 50px;
+    transition: background 0.3s; }
+  .slideNav .sCirc:hover, .slideNav .sCirc.current {
+    background: gold; }
+  .slideNav div {
+    width: 50px;
+    height: 50px;
+    background: gold;
+    position: absolute;
+    margin-top: -25px;
+    z-index: 2;
+    cursor: pointer; }
+  .slideNav .lBtn {
+    left: 1%; }
+  .slideNav .rBtn {
+    right: 1%; }
+
 .slipSlide {
   position: relative;
   width: 100%;
@@ -6,25 +37,13 @@
   overflow: hidden;
   zoom: 1;
   font-size: 0; }
-  .slipSlide .slideNav {
-    position: absolute;
-    top: 50%;
-    width: 100%; }
-    .slipSlide .slideNav div {
-      width: 50px;
-      height: 50px;
-      background: gold;
-      position: absolute;
-      margin-top: -25px;
-      z-index: 2;
-      cursor: pointer; }
-    .slipSlide .slideNav .lBtn {
-      left: 1%; }
-    .slipSlide .slideNav .rBtn {
-      right: 1%; }
+  .slipSlide .slideSpacer {
+    display: inline-block;
+    margin-left: 0.5%; }
   .slipSlide img {
     word-spacing: 0;
     width: 17%;
+    height: 80%;
     display: inline-block;
     vertical-align: top;
     position: relative;
@@ -51,7 +70,8 @@
       color: #FFF; }
     .slipSlide .slide img {
       width: 100%;
-      height: auto; }
+      height: 0;
+      padding-bottom: 100%; }
   .slipSlide .mobile .slide:last-child, .slipSlide .mobile .slide:last-child img, .slipSlide .mobile img:last-child {
     margin: 0 0 0 1.5%; }
   .slipSlide .slide.focus {
@@ -74,19 +94,15 @@
 
 @media (max-width: 1200px) {
   .slideSize {
-    width: 95%;
-    margin: 0 auto;
-    overflow: hidden; }
+    width: 99%;
+    margin: 0 auto; }
 
-  .slipSlide .slide {
-    width: 48%;
-    margin: 0 1%; } }
+  .slipSlide {
+    margin-right: 5%; }
+    .slipSlide .slide {
+      width: 45%;
+      margin: 0 2.5%; } }
 @media (max-width: 650px) {
-  .slideSize {
-    width: 92%;
-    margin: 0 auto;
-    overflow: hidden; }
-
   .slipSlide .slide {
-    width: 98%;
-    margin: 0 1%; } }
+    width: 95%;
+    margin: 0 2.5%; } }
