@@ -7,7 +7,7 @@
 		width:100%;
 		text-align:center;
 		.sCirc{
-			display:inline-block;
+			display:inline-block; 
 			position:relative;
 			background:#e1e1e1;
 			margin:10% 5px 0;
@@ -42,10 +42,11 @@
 	overflow:hidden;
 	zoom: 1;
 	font-size:0;
+	white-space:nowrap;
 	
 	.slideSpacer{
 		display:inline-block;
-		margin-left:0.5%;
+		margin-left:0.15%;
 	}
 	img{
 		word-spacing:0;
@@ -95,7 +96,7 @@
 	 }
 }
 .slideSize{
-	width:99%;
+	width:99%; 
 	margin:0 auto;
 }
 .slideSize.mobile{
@@ -108,6 +109,7 @@
 	display:inline-block;
 	float:left;
 	white-space:nowrap;
+	width:100%;
 }
 @media (max-width:1200px){
 	.slideSize{

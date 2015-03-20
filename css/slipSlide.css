@@ -36,10 +36,11 @@
   padding: 30px 0;
   overflow: hidden;
   zoom: 1;
-  font-size: 0; }
+  font-size: 0;
+  white-space: nowrap; }
   .slipSlide .slideSpacer {
     display: inline-block;
-    margin-left: 0.5%; }
+    margin-left: 0.15%; }
   .slipSlide img {
     word-spacing: 0;
     width: 17%;
@@ -90,7 +91,8 @@
   position: relative;
   display: inline-block;
   float: left;
-  white-space: nowrap; }
+  white-space: nowrap;
+  width: 100%; }
 
 @media (max-width: 1200px) {
   .slideSize {
@@ -106,3 +108,5 @@
   .slipSlide .slide {
     width: 95%;
     margin: 0 2.5%; } }
+
+/*# sourceMappingURL=slipSlide.css.map */

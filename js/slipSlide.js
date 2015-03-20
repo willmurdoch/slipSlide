@@ -11,25 +11,24 @@
 		}, options );
 		/*Layout*/
 		this.wrap('<div class="ssContainer"></div>');
-		this.wrapInner('<div class="slideWrap"></div>');
-		var sWrap = this.find('.slideWrap');
+		var sWrap = this;
 		var ssContainer = this.parents('.ssContainer');
-		sWrap.wrap('<div class="slideSize"></div>');
 		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-			sParent.find('.slideSize').addClass('mobile');
+			this.addClass('ssMobile');
 		}
-		sWrap.append('<div class="slideSpacer"></div>');
 		if(settings.nav == true){
 			if(settings.navType == 'dot') dotNav();
-			else arrowNav();
+			else{
+				arrowNav();
+				sWrap.append('<div class="slideSpacer"></div>');
+			}
 		}
 		/*Dot based navigation*/
-		var scroller = sWrap.parents('.slipSlide');
 		function dotNav(){
 			ssContainer.prepend('<div class="slideNav"></div>');
 			slide.each(function(i){
-				$(this).addClass('simpSli'+i);
-				ssContainer.find('.slideNav').append('<div class="sCirc'+i+' sCirc"></div>');
+				$(this).addClass('slide').attr('data-count',i);
+				ssContainer.find('.slideNav').append('<div class="sCirc" data-count="'+i+'"></div>');
 			});
 			ssContainer.find('.sCirc').first().addClass('current');
 			ssContainer.find('.sCirc').click(function(){
@@ -37,10 +36,10 @@
 					seanBlock = true;
 					ssContainer.find('.sCirc').removeClass('current');
 					$(this).addClass('current');
-					var nextSlide = String($(this).attr('class').split(' ', 1));
-					nextSlide = nextSlide.substr(5,6);
-					scroller.animate({
-						scrollLeft: $('.simpSli'+nextSlide).position().left
+					var nextSlide = $(this).attr('data-count');
+					var nextPos = sWrap.outerWidth()*nextSlide;
+					sWrap.animate({
+						scrollLeft: nextPos
 					},settings.speed,function(){
 						seanBlock = false;
 					});
@@ -55,13 +54,13 @@
 				if(seanBlock == false){
 					seanBlock = true;
 					if($(this).hasClass('lBtn')){
-						scroller.animate({
-							scrollLeft: parseInt(scroller.scrollLeft()) - (sWrap.find('.slide').width()+(parseInt(sWrap.find('.slide').css('margin-left'))*2))
+						sWrap.animate({
+							scrollLeft: parseInt(sWrap.scrollLeft()) - (sWrap.find('.slide').width()+(parseInt(sWrap.find('.slide').css('margin-left')))+(parseInt(sWrap.find('.slide').css('margin-right'))))
 						},settings.speed);
 					}
 					else{
-						scroller.animate({
-							scrollLeft: parseInt(scroller.scrollLeft()) + sWrap.find('.slide').width()+(parseInt(sWrap.find('.slide').css('margin-left'))*2)
+						sWrap.animate({
+							scrollLeft: parseInt(sWrap.scrollLeft()) + sWrap.find('.slide').width()+(parseInt(sWrap.find('.slide').css('margin-left')))+(parseInt(sWrap.find('.slide').css('margin-right')))
 						},settings.speed);
 					}
 					setTimeout(function(){
