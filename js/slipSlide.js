@@ -7,7 +7,8 @@
 		/*Settings*/
 		var settings = $.extend({
 			speed: 500,
-			nav: true
+			nav: true,
+			navType: 'dot'
 		}, options );
 		/*Layout*/
 		this.wrap('<div class="ssContainer"></div>');
@@ -37,7 +38,7 @@
 					ssContainer.find('.sCirc').removeClass('current');
 					$(this).addClass('current');
 					var nextSlide = $(this).attr('data-count');
-					var nextPos = sWrap.outerWidth()*nextSlide;
+					var nextPos = sWrap.scrollLeft() + sWrap.find('.slide[data-count="'+nextSlide+'"]').position().left;
 					sWrap.animate({
 						scrollLeft: nextPos
 					},settings.speed,function(){
