@@ -72,7 +72,8 @@
     .slipSlide .slide img {
       width: 100%;
       height: 0;
-      padding-bottom: 100%; }
+      padding-bottom: 100%;
+      margin: 0; }
   .slipSlide .mobile .slide:last-child, .slipSlide .mobile .slide:last-child img, .slipSlide .mobile img:last-child {
     margin: 0 0 0 1.5%; }
   .slipSlide .slide.focus {
@@ -108,5 +109,3 @@
   .slipSlide .slide {
     width: 95%;
     margin: 0 2.5%; } }
-
-/*# sourceMappingURL=slipSlide.css.map */

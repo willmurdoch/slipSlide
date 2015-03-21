@@ -7,8 +7,7 @@
 		/*Settings*/
 		var settings = $.extend({
 			speed: 500,
-			nav: true,
-			navType: 'dot'
+			nav: true
 		}, options );
 		/*Layout*/
 		this.wrap('<div class="ssContainer"></div>');
@@ -21,7 +20,6 @@
 			if(settings.navType == 'dot') dotNav();
 			else{
 				arrowNav();
-				sWrap.append('<div class="slideSpacer"></div>');
 			}
 		}
 		/*Dot based navigation*/
@@ -56,12 +54,12 @@
 					seanBlock = true;
 					if($(this).hasClass('lBtn')){
 						sWrap.animate({
-							scrollLeft: parseInt(sWrap.scrollLeft()) - (sWrap.find('.slide').width()+(parseInt(sWrap.find('.slide').css('margin-left')))+(parseInt(sWrap.find('.slide').css('margin-right'))))
+							scrollLeft: sWrap.scrollLeft() - slide.outerWidth(true)
 						},settings.speed);
 					}
 					else{
 						sWrap.animate({
-							scrollLeft: parseInt(sWrap.scrollLeft()) + sWrap.find('.slide').width()+(parseInt(sWrap.find('.slide').css('margin-left')))+(parseInt(sWrap.find('.slide').css('margin-right')))
+							scrollLeft: sWrap.scrollLeft() + slide.outerWidth(true)
 						},settings.speed);
 					}
 					setTimeout(function(){
