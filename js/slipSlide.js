@@ -2,26 +2,22 @@
 (function($){
 	$.fn.slipSlide = function(options){
 		var sParent = this;
-		var seanBlock = false;
+		var spamBlock = false;
 		var slide = this.children();
 		/*Settings*/
 		var settings = $.extend({
 			speed: 500,
-			nav: true
+			nav: true,
+			navDots: false,
+			navArrows: true
 		}, options );
 		/*Layout*/
 		this.wrap('<div class="ssContainer"></div>');
 		var sWrap = this;
 		var ssContainer = this.parents('.ssContainer');
-		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-			this.addClass('ssMobile');
-		}
-		if(settings.nav == true){
-			if(settings.navType == 'dot') dotNav();
-			else{
-				arrowNav();
-			}
-		}
+		if(settings.navDots == true) dotNav();
+		if(settings.navArrows == true) arrowNav();
+
 		/*Dot based navigation*/
 		function dotNav(){
 			ssContainer.prepend('<div class="slideNav"></div>');
@@ -31,27 +27,28 @@
 			});
 			ssContainer.find('.sCirc').first().addClass('current');
 			ssContainer.find('.sCirc').click(function(){
-				if(seanBlock == false){
-					seanBlock = true;
+				if(spamBlock == false){
+					spamBlock = true;
 					ssContainer.find('.sCirc').removeClass('current');
 					$(this).addClass('current');
 					var nextSlide = $(this).attr('data-count');
 					var nextPos = sWrap.scrollLeft() + sWrap.find('.slide[data-count="'+nextSlide+'"]').position().left;
+					console.log(nextPos);
 					sWrap.animate({
 						scrollLeft: nextPos
 					},settings.speed,function(){
-						seanBlock = false;
+						spamBlock = false;
 					});
 				}
 			});
 		}
-		
+
 		/*Left/right arrow based navigation*/
 		function arrowNav(){
 			ssContainer.prepend('<div class="slideNav"><div class="lBtn"></div><div class="rBtn"></div></div>');
-			$('.slideNav div').click(function(){
-				if(seanBlock == false){
-					seanBlock = true;
+			$('.slideNav .lBtn, .slideNav .rBtn').click(function(){
+				if(spamBlock == false){
+					spamBlock = true;
 					if($(this).hasClass('lBtn')){
 						sWrap.animate({
 							scrollLeft: sWrap.scrollLeft() - slide.outerWidth(true)
@@ -63,10 +60,10 @@
 						},settings.speed);
 					}
 					setTimeout(function(){
-						seanBlock = false;
+						spamBlock = false;
 					},settings.speed);
 				}
 			});
-		} 
+		}
 	};
 }(jQuery))

@@ -1,33 +1,45 @@
 .ssContainer {
-  position: relative; }
+  position: relative;
+}
 
 .slideNav {
   position: absolute;
   top: 50%;
   width: 100%;
-  text-align: center; }
-  .slideNav .sCirc {
-    display: inline-block;
-    position: relative;
-    background: #e1e1e1;
-    margin: 10% 5px 0;
-    bottom: 0;
-    border-radius: 50px;
-    transition: background 0.3s; }
-  .slideNav .sCirc:hover, .slideNav .sCirc.current {
-    background: gold; }
-  .slideNav div {
-    width: 50px;
-    height: 50px;
-    background: gold;
-    position: absolute;
-    margin-top: -25px;
-    z-index: 2;
-    cursor: pointer; }
-  .slideNav .lBtn {
-    left: 1%; }
-  .slideNav .rBtn {
-    right: 1%; }
+  text-align: center;
+}
+
+.slideNav .sCirc {
+  display: inline-block;
+  position: relative;
+  background: #e1e1e1;
+  margin: 10% 5px 0;
+  bottom: 0;
+  border-radius: 50px;
+  transition: background 0.3s;
+}
+
+.slideNav .sCirc:hover, .slideNav .sCirc.current {
+  background: gold;
+}
+
+.slideNav div {
+  width: 50px;
+  height: 50px;
+  background: gold;
+  position: absolute;
+  margin-top: -25px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.slideNav .lBtn {
+  left: 1%;
+}
+
+.slideNav .rBtn {
+  right: 1%;
+}
 
 .slipSlide {
   position: relative;
@@ -37,75 +49,109 @@
   overflow: hidden;
   zoom: 1;
   font-size: 0;
-  white-space: nowrap; }
-  .slipSlide .slideSpacer {
-    display: inline-block;
-    margin-left: 0.15%; }
-  .slipSlide img {
-    word-spacing: 0;
-    width: 17%;
-    height: 80%;
-    display: inline-block;
-    vertical-align: top;
-    position: relative;
-    opacity: 0.5;
-    margin: 0 1.5%;
-    transition: opacity 0.5s; }
-  .slipSlide img.focus {
-    opacity: 1; }
+  white-space: nowrap;
+}
+
+@media (max-width: 1200px) {
+  .slipSlide {
+    margin-right: 5%;
+  }
+}
+
+.slipSlide .slideSpacer {
+  display: inline-block;
+  margin-left: 0.15%;
+}
+
+.slipSlide img {
+  word-spacing: 0;
+  width: 17%;
+  height: 80%;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  opacity: 0.5;
+  margin: 0 1.5%;
+  transition: opacity 0.5s;
+}
+
+.slipSlide img.focus {
+  opacity: 1;
+}
+
+.slipSlide .slide {
+  word-spacing: 0;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  width: 30.333%;
+  background: red;
+  margin: 0 1.5%;
+  transition: background 0.5s;
+}
+
+@media (max-width: 1200px) {
   .slipSlide .slide {
-    word-spacing: 0;
-    display: inline-block;
-    vertical-align: top;
-    position: relative;
-    width: 30.333%;
-    background: red;
-    margin: 0 1.5%;
-    transition: background 0.5s; }
-    .slipSlide .slide p {
-      font-size: 5vw;
-      top: 0;
-      font-weight: 900;
-      margin: 0;
-      position: absolute;
-      color: #FFF; }
-    .slipSlide .slide img {
-      width: 100%;
-      height: 0;
-      padding-bottom: 100%;
-      margin: 0; }
-  .slipSlide .mobile .slide:last-child, .slipSlide .mobile .slide:last-child img, .slipSlide .mobile img:last-child {
-    margin: 0 0 0 1.5%; }
-  .slipSlide .slide.focus {
-    background: blue; }
+    width: 45%;
+    margin: 0 2.5%;
+  }
+}
+
+@media (max-width: 800px) {
+  .slipSlide .slide {
+    width: 95%;
+    margin: 0 2.5%;
+  }
+}
+
+.slipSlide .slide:last-child, .slipSlide .slide:last-child img, .slipSlide .slide img:last-child {
+  margin: 0 0 0 1.5%;
+}
+
+.slipSlide .slide.focus {
+  background: blue;
+}
+
+.slipSlide .slide p {
+  font-size: 5vw;
+  top: 0;
+  font-weight: 900;
+  margin: 0;
+  position: absolute;
+  color: #FFF;
+}
+
+.slipSlide .slide img {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  margin: 0;
+}
 
 .slideSize {
   width: 99%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  margin: 0 auto;
+}
 
-.slideSize.mobile {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch; }
+@media (max-width: 1200px) {
+  .slideSize {
+    width: 99%;
+  }
+}
+
+@media (max-width: 800px) {
+  .slideSize {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
 
 .slideWrap {
   position: relative;
   display: inline-block;
   float: left;
   white-space: nowrap;
-  width: 100%; }
-
-@media (max-width: 1200px) {
-  .slideSize {
-    width: 99%;
-    margin: 0 auto; }
-
-  .slipSlide {
-    margin-right: 5%; }
-    .slipSlide .slide {
-      width: 45%;
-      margin: 0 2.5%; } }
-@media (max-width: 650px) {
-  .slipSlide .slide {
-    width: 95%;
-    margin: 0 2.5%; } }
+  width: 100%;
+}

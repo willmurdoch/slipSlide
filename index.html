@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 8]><html class="lt-ie9 lt-ie8"><![endif]-->
-<!--[if IE 8]><html class="lt-ie9"><![endif]-->
-<!--[if IE 9]><html class="lt-ie10"><![endif]-->
-<html><!--<![endif]-->
+<html>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,13 +7,10 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/slipSlide.css">
+		<link rel="stylesheet" href="css/example.css">
 	</head>
 	<body>
-		<!--[if lt IE 7]>
-		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-		<![endif]-->
-
-		<!-- Add your site or application content here -->
+		<!-- Carousel example -->
 		<div id="spot1" class="slipSlide">
 			<div class="slide">
 				<p>1</p>
@@ -50,9 +44,13 @@
 				<p>8</p>
 				<img src="img/slide.png" />
 			</div>
-		</div> 
-		<script src="js/vendor/jquery-1.10.2.min.js"></script>
+			<div class="slideSpacer"></div>
+		</div>
+
+		<!--Required scripts-->
+		<script src="js/vendor/jquery-3.5.1.min.js"></script>
 		<script src="js/slipSlide.js"></script>
-		<script src="js/main.js"></script>
+		<!--End required scripts-->
+		<script src="js/example.js"></script>
 	</body>
 </html>
